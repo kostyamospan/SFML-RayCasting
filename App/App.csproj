@@ -10,4 +10,8 @@
       <ProjectReference Include="..\Engine\Engine.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="StaticFiles\Fonts\ARCADECLASSIC.TTF" />
+    </ItemGroup>
+
 </Project>

@@ -1,6 +1,7 @@
 ﻿using System;
 using Core.Abstract.Overlay;
 using Core.Abstract.Windows;
+using Engine.Managers;
 using SFML.Graphics;
 
 namespace Engine.Overlays.Debug
@@ -19,19 +20,19 @@ namespace Engine.Overlays.Debug
 
         public override void LoadContent()
         {
-            _consoleFont = new Font(ConsoleFontPath);
+            _consoleFont = FontManager.LoadFontFromPath(ConsoleFontPath);
         }
 
         public override void Draw()
         {
-            if (_consoleFont is null) throw new InvalidOperationException("LoadContent method was`nt called");
+            if (_consoleFont is null) throw new InvalidOperationException("Content should be loaded first");
 
             var fps = 1f / TargetWindow.GameTime.DeltaTime;
             var fpsString = fps.ToString("0");
 
             var displayFpsText = new Text(fpsString, _consoleFont, 14)
             {
-                Position = new(0, 0),
+                Position = PositionOffset,
                 FillColor = FontColor
             };
 
