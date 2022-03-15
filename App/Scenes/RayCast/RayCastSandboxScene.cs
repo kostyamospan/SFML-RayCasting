@@ -7,13 +7,14 @@ using Core.Draw.Figures.Interfaces;
 using Core.Draw.Figures.Primitives;
 using Engine.Overlays.Debug;
 using Engine.Overlays.Utils;
+using Engine.Scenes.Abstract;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
 namespace App.Scenes
 {
-    public class RayCastSandbox : Scene
+    public class RayCastSandbox : ManagedScene
     {
         private Vector2f? _nextLinePosStart;
         private Vector2f? _nextLinePosEnd;
@@ -26,7 +27,7 @@ namespace App.Scenes
 
         private readonly List<(Color color, float angle)> _raysMetadata = new(RaysAmount);
 
-        public RayCastSandbox(RenderWindow renderWindow) : base(renderWindow)
+        public RayCastSandbox(RenderWindow renderWindow) : base(renderWindow, new())
         {
         }
 
@@ -86,7 +87,8 @@ namespace App.Scenes
 
         private void OnKeyPressed(object sender, KeyEventArgs args)
         {
-            // Console.WriteLine($"Key {args.ToString()} is pressed");
+            if (args.Code == Keyboard.Key.Escape)
+                OnPrevSceneRequestCallback?.Invoke();                
         }
 
         private void OnMouseMoved(object sender, MouseMoveEventArgs args)

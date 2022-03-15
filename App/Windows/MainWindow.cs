@@ -36,10 +36,10 @@ namespace App.Windows
         protected override void Initialize()
         {
             _overlayManager.AddOverlay(new DebugOverlay(this) {FontColor = Color.Red});
-            _scenesManager.AddSceneAndSetAsCurrent(new RayCastSandbox(RenderWindow));
+            _scenesManager.AddSceneAndSetAsCurrent(0, new IndexScene(RenderWindow));
 
             _overlayManager.LoadContentAll();
-            
+
             _scenesManager.CurrentScene.Initialize();
 
             base.Initialize();
@@ -49,7 +49,7 @@ namespace App.Windows
         {
             _scenesManager.CurrentScene.Draw();
             _overlayManager.DrawAll();
-            
+
             base.FrameDraw();
         }
     }

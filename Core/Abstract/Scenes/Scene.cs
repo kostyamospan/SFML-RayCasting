@@ -5,7 +5,7 @@ namespace Core.Abstract.Scenes
     public abstract class Scene
     {
         protected readonly RenderWindow RenderWindow;
-
+            
         protected Scene(RenderWindow renderWindow)
         {
             RenderWindow = renderWindow;
